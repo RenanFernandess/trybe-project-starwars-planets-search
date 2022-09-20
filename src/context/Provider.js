@@ -5,10 +5,13 @@ import tableContext from './tableContext';
 export default function Provider({ children }) {
   const [planets, setPlanets] = useState([]);
   const [filterByName, setFilterByName] = useState({ name: '' });
+  const [filterByNumericValues, setFilterByNumericValues] = useState([]);
 
   const contextType = {
-    setFilterByName,
+    filterByNumericValues,
+    setFilterByNumericValues,
     filterByName,
+    setFilterByName,
     planets,
     setPlanets,
   };
