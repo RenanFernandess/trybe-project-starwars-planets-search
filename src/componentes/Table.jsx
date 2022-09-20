@@ -1,16 +1,22 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import tableContext from '../context/tableContext';
 import TableRow from './TableRow';
 import TableHeader from './TableHeader';
 
 export default function Table() {
-  const { planets } = useContext(tableContext);
+  const { planets, filterByName: { filteredName } } = useContext(tableContext);
+  const [planetList, setPlanetList] = useState([]);
+
+  useEffect(() => {
+    console.log('ok');
+    setPlanetList(planets.filter(({ name }) => name === filteredName || !filteredName));
+  }, [filteredName, planets]);
 
   return (
     <table>
       <TableHeader />
       <tbody>
-        { planets.map(({
+        { planetList && planetList.map(({
           climate,
           created,
           diameter,
