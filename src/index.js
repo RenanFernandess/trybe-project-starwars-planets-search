@@ -2,8 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import './styles/index.css';
+import Provider from './context/Provider';
 
 ReactDOM.render(
-  <App />,
+  <Provider>
+    <App />
+  </Provider>,
   document.getElementById('root'),
 );
