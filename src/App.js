@@ -11,7 +11,13 @@ function App() {
   useEffect(() => {
     fetch(URL)
       .then((response) => response.json())
-      .then(({ results }) => setPlanets(results));
+      .then(({ results }) => {
+        const planets = results.map((planet) => {
+          delete planet.residents;
+          return planet;
+        });
+        setPlanets(planets);
+      });
   }, [setPlanets]);
 
   return (
