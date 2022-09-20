@@ -2,6 +2,7 @@ import React, { useEffect, useContext } from 'react';
 import tableContext from './context/tableContext';
 import Table from './componentes/Table';
 import Filter from './componentes/Filter';
+import Provider from './context/Provider';
 
 const URL = 'https://swapi.dev/api/planets';
 
@@ -21,10 +22,12 @@ function App() {
   }, [setPlanets]);
 
   return (
-    <main>
-      <Filter />
-      <Table />
-    </main>
+    <Provider>
+      <main>
+        <Filter />
+        <Table />
+      </main>
+    </Provider>
   );
 }
 
