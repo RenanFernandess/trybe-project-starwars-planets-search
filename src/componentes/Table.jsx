@@ -4,13 +4,19 @@ import TableRow from './TableRow';
 import TableHeader from './TableHeader';
 
 export default function Table() {
-  const { planets, filterByName: { filteredName } } = useContext(tableContext);
+  const {
+    planets,
+    filterByName,
+  } = useContext(tableContext);
   const [planetList, setPlanetList] = useState([]);
 
   useEffect(() => {
     console.log('ok');
-    setPlanetList(planets.filter(({ name }) => name === filteredName || !filteredName));
-  }, [filteredName, planets]);
+    const { name: filteredName } = filterByName;
+    setPlanetList(
+      planets.filter(({ name }) => (name.includes(filteredName) || !filteredName)),
+    );
+  }, [filterByName, planets]);
 
   return (
     <table>
