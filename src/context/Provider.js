@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import propTypes from 'prop-types';
-import planetsContext from './planetsContext';
+import tableContext from './tableContext';
 
 export default function Provider({ children }) {
   const [planets, setPlanets] = useState([]);
@@ -11,9 +11,9 @@ export default function Provider({ children }) {
   };
 
   return (
-    <planetsContext.Provider value={ contextType }>
+    <tableContext.Provider value={ contextType }>
       { children }
-    </planetsContext.Provider>
+    </tableContext.Provider>
   );
 }
 
