@@ -2,6 +2,7 @@ import React, { useEffect, useContext } from 'react';
 import tableContext from '../context/tableContext';
 import Table from './Table';
 import Filter from './Filter';
+import FilterCard from './FilterCard';
 
 const URL = 'https://swapi.dev/api/planets';
 
@@ -39,8 +40,8 @@ export default function Main() {
       <br />
       <div>
         {
-          filterByNumericValues.map(({ column, comparison, value }, index) => (
-            <p key={ index }>{`${column} ${comparison} ${value}`}</p>))
+          filterByNumericValues.map((filter, index) => (
+            <FilterCard key={ index } filter={ filter } />))
         }
       </div>
       <br />
