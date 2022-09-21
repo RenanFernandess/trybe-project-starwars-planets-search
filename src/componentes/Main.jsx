@@ -6,7 +6,11 @@ import Filter from './Filter';
 const URL = 'https://swapi.dev/api/planets';
 
 export default function Main() {
-  const { setPlanets, filterByNumericValues } = useContext(tableContext);
+  const {
+    setPlanets,
+    filterByNumericValues,
+    setFilterByNumericValues,
+  } = useContext(tableContext);
 
   useEffect(() => {
     fetch(URL)
@@ -22,7 +26,16 @@ export default function Main() {
 
   return (
     <main>
-      <Filter />
+      <section>
+        <Filter />
+        <button
+          type="button"
+          data-testid="button-remove-filters"
+          onClick={ () => { setFilterByNumericValues([]); } }
+        >
+          Remover todas filtragens
+        </button>
+      </section>
       <br />
       <div>
         {
