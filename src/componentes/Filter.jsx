@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import tableContext from '../context/tableContext';
 import FormFilterByNumber from './FormFilterByNumber';
+import FormSort from './FormSort';
 
 export default function Filter() {
   const {
@@ -28,6 +29,7 @@ export default function Filter() {
         </label>
       </div>
       <FormFilterByNumber />
+      <FormSort />
       <button
         type="button"
         data-testid="button-remove-filters"
