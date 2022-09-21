@@ -1,13 +1,33 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import tableContext from '../context/tableContext';
 
+const COLUMNS = [
+  'population',
+  'orbital_period',
+  'diameter',
+  'rotation_period',
+  'surface_water',
+];
+
 export default function FormFilterByNumber() {
-  const { setFilterByNumericValues } = useContext(tableContext);
+  const { setFilterByNumericValues, filterByNumericValues } = useContext(tableContext);
   const [filterValues, setFilterValues] = useState({
     column: 'population',
     comparison: 'maior que',
     value: 0,
   });
+  const [columns, setColumns] = useState(COLUMNS);
+
+  useEffect(() => {
+    const filteredColumns = COLUMNS
+      .filter((value) => !filterByNumericValues.some(({ column }) => column === value));
+    setColumns(filteredColumns);
+    setFilterValues(({ comparison }) => ({
+      column: filteredColumns[0],
+      comparison,
+      value: 0,
+    }));
+  }, [filterByNumericValues]);
 
   const onInputChange = ({ target: { name, value } }) => {
     setFilterValues((previousValues) => ({
@@ -35,11 +55,9 @@ export default function FormFilterByNumber() {
           value={ column }
           onChange={ onInputChange }
         >
-          <option value="population">population</option>
-          <option value="orbital_period">orbital_period</option>
-          <option value="diameter">diameter</option>
-          <option value="rotation_period">rotation_period</option>
-          <option value="surface_water">surface_water</option>
+          {
+            columns.map((item) => (<option key={ item } value={ item }>{ item }</option>))
+          }
         </select>
       </label>
       <label htmlFor="comparison-filter">
