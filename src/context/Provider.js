@@ -6,13 +6,19 @@ export default function Provider({ children }) {
   const [planets, setPlanets] = useState([]);
   const [filterByName, setFilterByName] = useState({ name: '' });
   const [filterByNumericValues, setFilterByNumericValues] = useState([]);
+  const [order, setOrder] = useState({
+    column: 'population',
+    sort: 'ASC',
+  });
 
   const contextType = {
-    filterByNumericValues,
-    setFilterByNumericValues,
     filterByName,
-    setFilterByName,
+    filterByNumericValues,
+    order,
     planets,
+    setFilterByName,
+    setFilterByNumericValues,
+    setOrder,
     setPlanets,
   };
 
