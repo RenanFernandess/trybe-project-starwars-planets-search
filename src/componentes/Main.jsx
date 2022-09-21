@@ -6,7 +6,7 @@ import Filter from './Filter';
 const URL = 'https://swapi.dev/api/planets';
 
 export default function Main() {
-  const { setPlanets } = useContext(tableContext);
+  const { setPlanets, filterByNumericValues } = useContext(tableContext);
 
   useEffect(() => {
     fetch(URL)
@@ -23,6 +23,14 @@ export default function Main() {
   return (
     <main>
       <Filter />
+      <br />
+      <div>
+        {
+          filterByNumericValues.map(({ column, comparison, value }, index) => (
+            <p key={ index }>{`${column} ${comparison} ${value}`}</p>))
+        }
+      </div>
+      <br />
       <Table />
     </main>
   );
