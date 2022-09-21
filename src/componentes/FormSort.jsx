@@ -1,6 +1,19 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
+import tableContext from '../context/tableContext';
 
 export default function SortPlanets() {
+  const { order, setOrder } = useContext(tableContext);
+  const [state, setState] = useState(order);
+  const { column, sort } = state;
+
+  const onInputChange = ({ target: { name, value } }) => {
+    console.log(value);
+    setState((previousState) => ({
+      ...previousState,
+      [name]: value,
+    }));
+  };
+
   return (
     <form>
       <select
@@ -22,6 +35,8 @@ export default function SortPlanets() {
             type="radio"
             name="sort"
             value="ASC"
+            onChange={ onInputChange }
+            checked={ sort === 'ASC' }
             id="input-asc"
             data-testid="column-sort-input-asc"
           />
@@ -32,6 +47,8 @@ export default function SortPlanets() {
             type="radio"
             name="sort"
             value="DESC"
+            checked={ sort === 'DESC' }
+            onChange={ onInputChange }
             id="input-desc"
             data-testid="column-sort-input-desc"
           />
@@ -41,6 +58,7 @@ export default function SortPlanets() {
       <button
         type="button"
         testid="column-sort-button"
+        onClick={ () => { setOrder(state); } }
       >
         ordenar
       </button>
