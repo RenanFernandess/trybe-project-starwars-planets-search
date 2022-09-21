@@ -3,20 +3,30 @@ import tableContext from '../context/tableContext';
 import TableRow from './TableRow';
 import TableHeader from './TableHeader';
 
+const comparator = {
+  maior(compared, value) { return compared > value; },
+  menor(compared, value) { return compared < value; },
+  igual(compared, value) { return compared === value; },
+};
+
 export default function Table() {
   const {
     planets,
     filterByName,
+    filterByNumericValues,
   } = useContext(tableContext);
   const [planetList, setPlanetList] = useState([]);
 
   useEffect(() => {
     console.log('ok');
     const { name: filteredName } = filterByName;
-    setPlanetList(
-      planets.filter(({ name }) => (name.includes(filteredName) || !filteredName)),
-    );
-  }, [filterByName, planets]);
+    setPlanetList(planets
+      .filter(({ name }) => (name.includes(filteredName) || !filteredName))
+      .filter((planet) => filterByNumericValues
+        .every(({ column, comparison, value }) => (
+          comparator[comparison.split(' ')[0]](Number(planet[column]), Number(value))))
+          || !filterByNumericValues.length));
+  }, [filterByName, planets, filterByNumericValues]);
 
   return (
     <table>

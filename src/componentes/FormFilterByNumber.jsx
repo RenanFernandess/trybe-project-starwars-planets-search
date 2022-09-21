@@ -6,7 +6,7 @@ export default function FormFilterByNumber() {
   const [filterValues, setFilterValues] = useState({
     column: 'population',
     comparison: 'maior que',
-    value: '100000',
+    value: 0,
   });
 
   const onInputChange = ({ target: { name, value } }) => {
@@ -35,11 +35,11 @@ export default function FormFilterByNumber() {
           value={ column }
           onChange={ onInputChange }
         >
-          <option value="population">Population</option>
-          <option value="orbital_period">Orbital period</option>
-          <option value="diameter">Diameter</option>
-          <option value="rotation_period">Rotation period</option>
-          <option value="surface_water">Surface water</option>
+          <option value="population">population</option>
+          <option value="orbital_period">orbital_period</option>
+          <option value="diameter">diameter</option>
+          <option value="rotation_period">rotation_period</option>
+          <option value="surface_water">surface_water</option>
         </select>
       </label>
       <label htmlFor="comparison-filter">
@@ -50,9 +50,9 @@ export default function FormFilterByNumber() {
           value={ comparison }
           onChange={ onInputChange }
         >
-          <option value="maior que">Maior que</option>
-          <option value="menor que">Menor que</option>
-          <option value="igual a">Igual a</option>
+          <option value="maior que">maior que</option>
+          <option value="menor que">menor que</option>
+          <option value="igual a">igual a</option>
         </select>
       </label>
       <label htmlFor="value-filter">
