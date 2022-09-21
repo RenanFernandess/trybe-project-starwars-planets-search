@@ -10,7 +10,6 @@ export default function Main() {
   const {
     setPlanets,
     filterByNumericValues,
-    setFilterByNumericValues,
   } = useContext(tableContext);
 
   useEffect(() => {
@@ -27,16 +26,7 @@ export default function Main() {
 
   return (
     <main>
-      <section>
-        <Filter />
-        <button
-          type="button"
-          data-testid="button-remove-filters"
-          onClick={ () => { setFilterByNumericValues([]); } }
-        >
-          Remover todas filtragens
-        </button>
-      </section>
+      <Filter />
       <br />
       <div>
         {
