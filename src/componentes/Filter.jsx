@@ -3,7 +3,11 @@ import tableContext from '../context/tableContext';
 import FormFilterByNumber from './FormFilterByNumber';
 
 export default function Filter() {
-  const { setFilterByName, filterByName: { name } } = useContext(tableContext);
+  const {
+    setFilterByName,
+    filterByName: { name },
+    setFilterByNumericValues,
+  } = useContext(tableContext);
 
   const onInputChange = ({ target: { value } }) => {
     setFilterByName({ name: value });
@@ -24,6 +28,13 @@ export default function Filter() {
         </label>
       </div>
       <FormFilterByNumber />
+      <button
+        type="button"
+        data-testid="button-remove-filters"
+        onClick={ () => { setFilterByNumericValues([]); } }
+      >
+        Remover todas filtragens
+      </button>
     </section>
   );
 }
