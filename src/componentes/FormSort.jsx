@@ -7,7 +7,6 @@ export default function SortPlanets() {
   const { column, sort } = state;
 
   const onInputChange = ({ target: { name, value } }) => {
-    console.log(value);
     setState((previousState) => ({
       ...previousState,
       [name]: value,
