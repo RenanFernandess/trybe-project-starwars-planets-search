@@ -1,16 +1,37 @@
 import React, { useContext, useState } from 'react';
 import tableContext from '../context/tableContext';
 
-export default function SortPlanets() {
-  const { order, setOrder } = useContext(tableContext);
-  const [state, setState] = useState(order);
-  const { column, sort } = state;
+const comparator = {
+  ASC(valueA, valueB) {
+    const smaller = -1;
+    return (Number.isNaN(valueB)) ? smaller : valueA - valueB;
+  },
+  DESC(valueA, valueB) {
+    return (Number.isNaN(valueB)) ? 1 : valueB - valueA;
+  },
+};
+
+export default function FromSort() {
+  const { setPlanets } = useContext(tableContext);
+  const [{ column, sort }, setOrder] = useState({
+    column: 'population',
+    sort: 'ASC',
+  });
 
   const onInputChange = ({ target: { name, value } }) => {
-    setState((previousState) => ({
-      ...previousState,
+    setOrder((order) => ({
+      ...order,
       [name]: value,
     }));
+  };
+
+  const sortPlanets = () => {
+    console.log('AQUi');
+    setPlanets((planets) => {
+      const array = planets.sort(({ [column]: a }, { [column]: b }) => (
+        comparator[sort](Number(a), Number(b))));
+      return [...array];
+    });
   };
 
   return (
@@ -22,11 +43,11 @@ export default function SortPlanets() {
         value={ column }
         onChange={ onInputChange }
       >
-        <option value="population">Population</option>
-        <option value="orbital_period">Orbital period</option>
-        <option value="diameter">Diameter</option>
-        <option value="rotation_period">Rotation period</option>
-        <option value="surface_water">Surface water</option>
+        <option value="population">population</option>
+        <option value="orbital_period">orbital_period</option>
+        <option value="diameter">diameter</option>
+        <option value="rotation_period">rotation_period</option>
+        <option value="surface_water">surface_water</option>
       </select>
       <div>
         <label htmlFor="input-asc">
@@ -56,8 +77,8 @@ export default function SortPlanets() {
       </div>
       <button
         type="button"
-        testid="column-sort-button"
-        onClick={ () => { setOrder(state); } }
+        data-testid="column-sort-button"
+        onClick={ sortPlanets }
       >
         ordenar
       </button>
