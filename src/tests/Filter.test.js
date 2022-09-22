@@ -17,12 +17,26 @@ describe('Testa se é possivel filtrar os planetas', () => {
   it('Testa se é possivel filtrar por nome', async () => {
     await waitFor(() => expect(screen.getByText(/^Naboo$/i, { selector: 'td' })).toBeInTheDocument())
 
-    const Kamino = screen.getByRole('cell', { name: /^Kamino$/i });
+    const kamino = screen.getByRole('cell', { name: /^Kamino$/i });
 
     userEvent.type(screen.getByTestId('name-filter'), 'Naboo');
 
     expect(screen.getByRole('cell', { name: /^Naboo$/i })).toBeInTheDocument();
     expect(screen.getAllByRole('row')).toHaveLength(2);
-    expect(Kamino).not.toBeInTheDocument();
+    expect(kamino).not.toBeInTheDocument();
+  });
+
+  it('Verifica se a filtragem de "maior que" funciona corretamente', async () => {
+    await waitFor(() => expect(screen.getByText(/^Naboo$/i, { selector: 'td' })).toBeInTheDocument());
+
+    const naboo = screen.getByRole('cell', { name: /^Naboo$/i });
+    // const inputComparison = screen.getByTestId('comparison-filter');
+
+    userEvent.selectOptions(screen.getByTestId('column-filter'), 'rotation_period');
+    userEvent.type(screen.getByTestId('value-filter'), '26');
+    userEvent.click(screen.getByRole('button', { name: /Filtrar/i }));
+
+    expect(screen.getByRole('cell', { name: /^Kamino$/i })).toBeInTheDocument();
+    expect(naboo).not.toBeInTheDocument();
   });
 }); 
