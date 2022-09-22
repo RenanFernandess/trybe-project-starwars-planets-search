@@ -48,6 +48,7 @@ export default function FormFilterByNumber() {
   return (
     <form>
       <label htmlFor="column-filter">
+        Coluna
         <select
           name="column"
           id="column-filter"
@@ -61,6 +62,7 @@ export default function FormFilterByNumber() {
         </select>
       </label>
       <label htmlFor="comparison-filter">
+        Operador
         <select
           name="comparison"
           id="comparison-filter"
