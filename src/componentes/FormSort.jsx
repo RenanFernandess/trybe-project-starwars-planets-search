@@ -38,7 +38,7 @@ export default function FromSort() {
     <form>
       <select
         name="column"
-        id="column-filter"
+        id="column-sort"
         data-testid="column-sort"
         value={ column }
         onChange={ onInputChange }
