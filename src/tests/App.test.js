@@ -28,4 +28,15 @@ describe('Testa se é possui campos de filtragem e uma tabela', () => {
     expect(inputComparison.options).toHaveLength(3);
     expect(screen.getByRole('button', { name: /Filtrar/i })).toBeInTheDocument();
   });
+
+  it('Verifica se possui um form de ordenação', () => {
+    const inputColumn = screen.getByTestId('column-sort');
+
+    expect(screen.getByRole('radio', { name: /ascendente/i })).toBeInTheDocument();
+    expect(screen.getByRole('radio', { name: /descendente/i })).toBeInTheDocument();
+    expect(inputColumn).toBeInTheDocument();
+    expect(inputColumn.options).toHaveLength(5);
+    expect(screen.getByRole('button', { name: /ordenar/i })).toBeInTheDocument();
+
+  });
 });
