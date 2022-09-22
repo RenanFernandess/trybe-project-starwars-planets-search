@@ -39,6 +39,10 @@ describe('Testa se é possui campos de filtragem e uma tabela', () => {
     expect(screen.getByRole('button', { name: /ordenar/i })).toBeInTheDocument();
   });
 
+  it('Verifica se possui um botão para limpar todos os filtros', () => {
+    expect(screen.getByRole('button', { name: /Remover todas filtragens/i })).toBeInTheDocument();
+  });
+
   it('Verifica se a tabela possuir um cabeçalho', () => {
     expect(screen.getByText(/^Name$/i, { selector: 'th' })).toBeInTheDocument();
     expect(screen.getByText(/^Rotation Period$/i, { selector: 'th' })).toBeInTheDocument();
