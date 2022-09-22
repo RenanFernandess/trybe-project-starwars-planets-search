@@ -37,6 +37,25 @@ describe('Testa se é possui campos de filtragem e uma tabela', () => {
     expect(inputColumn).toBeInTheDocument();
     expect(inputColumn.options).toHaveLength(5);
     expect(screen.getByRole('button', { name: /ordenar/i })).toBeInTheDocument();
+  });
 
+  it('Verifica se possui uma tabela', () => {
+
+  });
+
+  it('Verifica se a tabela possuir um cabeçalho', () => {
+    expect(screen.getByText(/^Name$/i, { selector: 'th' })).toBeInTheDocument();
+    expect(screen.getByText(/^Rotation Period$/i, { selector: 'th' })).toBeInTheDocument();
+    expect(screen.getByText(/^Orbital Period$/i, { selector: 'th' })).toBeInTheDocument();
+    expect(screen.getByText(/^Diameter$/i, { selector: 'th' })).toBeInTheDocument();
+    expect(screen.getByText(/^Climate$/i, { selector: 'th' })).toBeInTheDocument();
+    expect(screen.getByText(/^Gravity$/i, { selector: 'th' })).toBeInTheDocument();
+    expect(screen.getByText(/^Terrain$/i, { selector: 'th' })).toBeInTheDocument();
+    expect(screen.getByText(/^Surface Water$/i, { selector: 'th' })).toBeInTheDocument();
+    expect(screen.getByText(/^Population$/i, { selector: 'th' })).toBeInTheDocument();
+    expect(screen.getByText(/^Films$/i, { selector: 'th' })).toBeInTheDocument();
+    expect(screen.getByText(/^Created$/i, { selector: 'th' })).toBeInTheDocument();
+    expect(screen.getByText(/^Edited$/i, { selector: 'th' })).toBeInTheDocument();
+    expect(screen.getByText(/^URL$/i, { selector: 'th' })).toBeInTheDocument();
   });
 });
