@@ -231,4 +231,6 @@ const mockData = [
       "edited": "2014-12-20T20:58:18.434000Z", 
       "url": "https://swapi.dev/api/planets/10/"
   }
-]
+];
+
+export default mockData;
