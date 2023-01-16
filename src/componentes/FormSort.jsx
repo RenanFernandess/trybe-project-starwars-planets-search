@@ -26,7 +26,6 @@ export default function FromSort() {
   };
 
   const sortPlanets = () => {
-    console.log('AQUi');
     setPlanets((planets) => {
       const array = planets.sort(({ [column]: a }, { [column]: b }) => (
         comparator[sort](Number(a), Number(b))));

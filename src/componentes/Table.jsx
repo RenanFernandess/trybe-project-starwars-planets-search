@@ -18,7 +18,6 @@ export default function Table() {
   const [planetList, setPlanetList] = useState([]);
 
   useEffect(() => {
-    console.log('ok');
     const { name: filteredName } = filterByName;
     setPlanetList(planets
       .filter(({ name }) => (name.includes(filteredName) || !filteredName))
