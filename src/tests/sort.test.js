@@ -57,6 +57,7 @@ describe('Test se é possivel ordernar os planetas', () => {
     await waitFor(() => expect(screen.getByRole('cell', { name: /tatooine/i })).toBeInTheDocument());
 
     const ascendenteRadio = screen.getByRole('radio', { name: /ascendente/i });
+
     const sortButton = screen.getByRole('button', { name: /ordenar/i });
 
     userEvent.click(ascendenteRadio);
@@ -68,5 +69,22 @@ describe('Test se é possivel ordernar os planetas', () => {
 
     expect(firstPlanet).toHaveTextContent(/yavin iv/i);
     expect(lastPlanet).toHaveTextContent(/hoth/i);
+  });
+
+  it('Verifica se planetas com informações desconhecidas ficam no final da lista ao ordernar em orden decrescente.', async () => {
+    await waitFor(() => expect(screen.getByRole('cell', { name: /tatooine/i })).toBeInTheDocument());
+
+    const descendenteRadio = screen.getByRole('radio', { name: /descendente/i });
+    const sortButton = screen.getByRole('button', { name: /ordenar/i });
+
+    userEvent.click(descendenteRadio);
+    userEvent.click(sortButton);
+
+    const planets = screen.getAllByTestId('planet-name');
+    const firstPlanet = planets[0]
+    const lastPlanet = planets[planets.length - 1];
+
+    expect(firstPlanet).toHaveTextContent(/coruscant/i);
+    expect(lastPlanet).toHaveTextContent(/dagobah/i);
   });
 });
