@@ -15,7 +15,7 @@ describe('Test se é possivel ordernar os planetas', () => {
     global.fetch.mockClear();
   });
 
-  it('Verifica se é possivel ordernar em orden crescente', async () => {
+  it('Verifica se é possivel ordernar em orden crescente.', async () => {
     await waitFor(() => expect(screen.getByRole('cell', { name: /tatooine/i })).toBeInTheDocument());
 
     const selectInput = screen.getAllByRole('combobox', { name: /coluna/i });
@@ -29,5 +29,21 @@ describe('Test se é possivel ordernar os planetas', () => {
     const [firstPlanet] = screen.getAllByTestId('planet-name');
 
     expect(firstPlanet).toHaveTextContent(/bespin/i);
+  });
+
+  it('Verifica se é possivel ordernar em orden decrescente.', async () => {
+    await waitFor(() => expect(screen.getByRole('cell', { name: /tatooine/i })).toBeInTheDocument());
+
+    const selectInput = screen.getAllByRole('combobox', { name: /coluna/i });
+    const ascendenteRadio = screen.getByRole('radio', { name: /descendente/i });
+    const sortButton = screen.getByRole('button', { name: /ordenar/i });
+
+    userEvent.selectOptions(selectInput[1], 'rotation_period');
+    userEvent.click(ascendenteRadio);
+    userEvent.click(sortButton);
+
+    const [firstPlanet] = screen.getAllByTestId('planet-name');
+
+    expect(firstPlanet).toHaveTextContent(/kamino/i);
   });
 });
