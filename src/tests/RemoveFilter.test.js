@@ -18,7 +18,7 @@ describe('Testa se é possivel Remover filtragens', () => {
   it('Verifica se ao remover a filtragem aparece o Planeta tatooine aparece na tela e o card da filtragem some.', async () => {
     await waitFor(() => expect(screen.getByText(/^Naboo$/i, { selector: 'td' })).toBeInTheDocument());
 
-    const inputSelect = screen.getByRole('combobox', { name: /coluna/i });
+    const [inputSelect] = screen.getAllByRole('combobox', { name: /coluna/i });
     const inputNumber = screen.getByRole('spinbutton');
     const buttonFilter = screen.getByRole('button', { name: /filtrar/i });
 
